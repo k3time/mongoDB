@@ -51,7 +51,7 @@ app.use(function(error, req, res, next) {
     });
 });
 
-var port = process.env.PORT || 3333;
+var port = process.env.PORT || 3333; //using local port 3333
 
 console.log("Checking the availability of port %d", port);
 var netServer = net.createServer();
