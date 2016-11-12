@@ -1,0 +1,26 @@
+{
+  "name": "MongoDB",
+  "version": "1.0.0",
+  "description": "node mongolab handlebars",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "keywords": [
+    "node",
+    "handlebars",
+    "mongolab"
+  ],
+  "author": "Kuldeep Kaushik",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.7",
+    "chalk": "^1.1.1",
+    "express": "^4.13.3",
+    "express-handlebars": "latest",
+    "express-session": "^1.12.1",
+    "mongodb": "latest",
+    "mongoose": "latest"
+  }
+}

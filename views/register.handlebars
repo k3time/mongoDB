@@ -1,0 +1,29 @@
+<div class="panel panel-default shortPanel">
+    <h1 class="">Sign up</h1>
+    <h5 class="">{{errorMessage}}</h5>
+    <form class="" method="post" action="/register">
+        <p class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" required class="form-control" name="username" placeholder="user name" />
+        </p>
+        <p class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input type="email" required class="form-control" name="email" placeholder="email address" />
+        </p>
+
+        <p class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input type="password" required class="form-control" name="password" placeholder="password" />
+        </p>
+        <p class="help-block text-center">
+            <small>We hate spams, so don't worrry</small>
+        </p>
+        <p class="text-center">
+            <button type="submit" class="btn btn-success">Create Account</button>
+        </p>
+    </form>
+    <div class="">
+        <h5 align="center">Already registered? <a href="/"> Login</a></h5>
+    </div>
+    <br/>
+</div>

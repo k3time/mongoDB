@@ -1,0 +1,43 @@
+<div class="">
+    <H4>{{message}} </H4>
+    <H2>JavaScript technology Stack 
+        <a href='/addForm' class="btn btn-primary pull-right">
+            <span class="glyphicon glyphicon-plus"></span>Add Technology
+        </a>
+    </H2>
+    <hr/>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Technology</th>
+                    <th>Description</th>
+                    <th class="text-center">Edit</th>
+                    <th class="text-center">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each recordsArray}}
+                <tr>
+                    <td>{{this.tech}}</td>
+                    <td>{{this.description}}</td>
+                    <td class="text-center">
+                        <a href='/edit?tech={{this.tech}}'>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href='/delete?tech={{this.tech}}'>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    <a href='/addForm' class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-plus"></span>Add Technology
+    </a>
+</div>
