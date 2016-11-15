@@ -7,13 +7,13 @@ var app = require('../app');//expressJS allows circular dependencies
 var gLoggedIN = 0;
 
 exports.loginPageHandler = function (req, res){
-	res.render('login.handlebars', {LoggedIN: gLoggedIN});
+	res.render('login.handlebars', {title:'login', LoggedIN: gLoggedIN});
 };//loginPageHandler
 
 exports.logoutPageHandler = function (req, res){
   req.session.destroy();
   gLoggedIN = 0;  
-  res.render('message.handlebars', {message:'<span class="label label-success">You have logged-out successfully</span>', 
+  res.render('message.handlebars', {title:'logout', message:'<span class="label label-success">You have logged-out successfully</span>', 
                                    LoggedIN: gLoggedIN});
 };//logoutPageHandler
 
@@ -25,7 +25,7 @@ exports.authHandler = function (req, res){
 	UserModel.findOne({username:nmReq}, function(err, userObj){
     if(userObj === null){
      	authResult = '<span class="label label-danger">Login Failed: User name does not exist in db</span>' ;
-      res.render('message.handlebars', {message:authResult, 
+      res.render('message.handlebars', {title:'wrong username', message:authResult, 
                                         LoggedIN: gLoggedIN
                                         });
     } else if (pwdReq === userObj.password){
@@ -35,12 +35,12 @@ exports.authHandler = function (req, res){
         req.url = '/console';
         req.method = 'get';
         app._router.handle(req, res);
-        // res.render('message.handlebars', {message:authResult,
+        // res.render('message.handlebars', {title:'technology list', message:authResult,
         //                                  LoggedIN: gLoggedIN
         //                                 });
 	  } else{
 				authResult = '<span class="label label-danger">Login Failed: Password did not match</span>' ; 
-        res.render('message.handlebars', {message:authResult, 
+        res.render('message.handlebars', {title:'wrong password', message:authResult, 
                                           LoggedIN: gLoggedIN});
 	  }
 		console.log("Login Name %s, Password %s. Login outcome [%s]", nmReq, pwdReq, authResult);
@@ -61,7 +61,7 @@ exports.consoleHandler = function (req, res){
       recordsArray = techArray;
       outcomeBoolean = 1;
       gLoggedIN = 1;
-      res.render('console.handlebars', {recordsArray:recordsArray,
+      res.render('console.handlebars', {title:'technology list', recordsArray:recordsArray,
                                         LoggedIN: gLoggedIN
                                        });
       } 
@@ -71,7 +71,7 @@ exports.consoleHandler = function (req, res){
 
 
 exports.registerFormHandler = function(req, res){
-   res.render("register.handlebars", {LoggedIN: gLoggedIN});
+   res.render("register.handlebars", {title:'register', LoggedIN: gLoggedIN});
 }; //registerFormHandler
 
 exports.registerUserHandler = function(req, res){
@@ -85,11 +85,11 @@ exports.registerUserHandler = function(req, res){
      if(err){
        var message = "A user already exists with that username or email";
        console.log(message);
-       res.render("register.handlebars", {errorMessage:message, 
+       res.render("register.handlebars", {title:'user exists', errorMessage:message, 
                                           LoggedIN: gLoggedIN});
      }else{
        req.session.newuser = savedUser.username;
-       res.render('message.handlebars', {message:'<span class="label label-success">Registration successful</span>', 
+       res.render('message.handlebars', {title:'registration success', message:'<span class="label label-success">Registration successful</span>', 
                                          LoggedIN: gLoggedIN});
      }
    }); //newuser.save
@@ -100,7 +100,7 @@ exports.editPageHandler = function(req, res){
   TechModel.findOne({tech:techToEdit}, function(err, techRec){
   if (!err){
     console.log(chalk.yellow("Going to edit -> [" + techRec.tech + " : " + techRec.description + "]"));
-    res.render('editPage.handlebars', {techRec: techRec, LoggedIN: gLoggedIN});
+    res.render('editPage.handlebars', {title:'edit technology', techRec: techRec, LoggedIN: gLoggedIN});
   } 
 }); //TechModel.findOne
 }; //editPageHandler
@@ -117,11 +117,11 @@ exports.saveChangesHandler = function(req, res){
    if(err){
      message = '<span class="label label-danger">Update Failed</span>';
      console.log(chalk.red(message));
-     res.render('message.handlebars', {message: message, LoggedIN: gLoggedIN});
+     res.render('message.handlebars', {title:'update failed', message: message, LoggedIN: gLoggedIN});
    }else{
      message = '<span class="label label-success">A record saved succesfully</span>';
      console.log(chalk.green(message));
-     res.render('message.handlebars', {message: message, LoggedIN: gLoggedIN});
+     res.render('message.handlebars', {title:'update success', message: message, LoggedIN: gLoggedIN});
    }
   });
 }; //saveChangesHandler
@@ -131,13 +131,13 @@ exports.deletePageHandler = function(req, res){
   TechModel.remove({tech:techToEdit}, function(err, techRec){
   if (!err){
     var message = '<span class="label label-success">A record removed successfully</span>'
-    res.render('message.handlebars', {message: message, LoggedIN: gLoggedIN});
+    res.render('message.handlebars', {title:'removal success', message: message, LoggedIN: gLoggedIN});
   } 
 }); //TechModel.remove
 }; //editPageHandler
 
 exports.addFormHandler = function(req, res){
-    res.render('add.handlebars', {LoggedIN: gLoggedIN});
+    res.render('add.handlebars', {title:'add technology', LoggedIN: gLoggedIN});
  }; //addFormHandler
 
 exports.addHandler = function(req, res){
@@ -150,10 +150,10 @@ exports.addHandler = function(req, res){
      if(err){
        message = '<span class="label label-danger">A record already exists with given technology</span>';
        console.log(message);
-       res.render("message.handlebars", {message:message, LoggedIN: gLoggedIN});
+       res.render("message.handlebars", {title:'record exists', message:message, LoggedIN: gLoggedIN});
      }else{
        message = '<span class="label label-success">A new technology added successfully</span>';
-       res.render('message.handlebars', {message:message, LoggedIN: gLoggedIN});
+       res.render('message.handlebars', {title:'record added', message:message, LoggedIN: gLoggedIN});
      }
    }); //newTech.save
 }; //addHandler
