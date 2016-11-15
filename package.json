@@ -11,7 +11,7 @@
     "handlebars",
     "mongolab"
   ],
-  "author": "Kuldeep Kaushik",
+  "author": "K3TIME",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.14.2",

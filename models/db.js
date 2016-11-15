@@ -1,14 +1,11 @@
 var chalk = require('chalk');
 var mongoose = require('mongoose');
 
-
-//var dbURI = 'mongodb://127.0.0.1/abcDB';
-var dbURI =  'mongodb://edu:edu@ds015879.mlab.com:15879/edurekadb';
+var dbURI =  'mongodb://k3time:mlab7pass@ds151127.mlab.com:51127/technology';
 
 //mongo interactive shell > mongo ds151127.mlab.com:51127/technology -u <dbuser> -p <dbpassword>
 //MongoDB driver > mongodb://<dbuser>:<dbpassword>@ds151127.mlab.com:51127/technology
 
-//var dbURI =  'mongodb://k3time:mlab7pass@ds51127.mlab.com:51127/technology';
 console.log(chalk.yellow("Establishing connection to the DB"));
 
 //   ****** CONNECTIONS
