@@ -1,6 +1,8 @@
 var chalk = require('chalk');
 var mongoose = require('mongoose');
 
+//   ****** DB : local and server
+//var dbURI =  'mongodb://127.0.0.1/technology';
 var dbURI =  'mongodb://k3time:mlab7pass@ds151127.mlab.com:51127/technology';
 
 //mongo interactive shell > mongo ds151127.mlab.com:51127/technology -u <dbuser> -p <dbpassword>
